@@ -429,3 +429,115 @@ INFO: Creating symlink to fsaverage subject...
 \n mris_label2annot --s sub.01.bl.01 --hemi rh --ctab /Volumes/CFMI-CFS/opt/fs6/average/colortable_BA.txt --l rh.BA1_exvivo.thresh.label --l rh.BA2_exvivo.thresh.label --l rh.BA3a_exvivo.thresh.label --l rh.BA3b_exvivo.thresh.label --l rh.BA4a_exvivo.thresh.label --l rh.BA4p_exvivo.thresh.label --l rh.BA6_exvivo.thresh.label --l rh.BA44_exvivo.thresh.label --l rh.BA45_exvivo.thresh.label --l rh.V1_exvivo.thresh.label --l rh.V2_exvivo.thresh.label --l rh.MT_exvivo.thresh.label --l rh.entorhinal_exvivo.thresh.label --l rh.perirhinal_exvivo.thresh.label --a BA_exvivo.thresh --maxstatwinner --noverbose \n
 \n mris_anatomical_stats -th3 -mgz -f ../stats/rh.BA_exvivo.stats -b -a ./rh.BA_exvivo.annot -c ./BA_exvivo.ctab sub.01.bl.01 rh white \n
 \n mris_anatomical_stats -th3 -mgz -f ../stats/rh.BA_exvivo.thresh.stats -b -a ./rh.BA_exvivo.thresh.annot -c ./BA_exvivo.thresh.ctab sub.01.bl.01 rh white \n
+\n\n#---------------------------------
+# New invocation of recon-all Fri Jun 30 12:49:22 EDT 2017 
+#--------------------------------------------
+#@# Intensity Normalization2 Fri Jun 30 12:49:30 EDT 2017
+\n mri_normalize -mprage -aseg aseg.presurf.mgz -mask brainmask.mgz norm.mgz brain.mgz \n
+#--------------------------------------------
+#@# Mask BFS Fri Jun 30 12:52:40 EDT 2017
+\n mri_mask -T 5 brain.mgz brainmask.mgz brain.finalsurfs.mgz \n
+#--------------------------------------------
+#@# WM Segmentation Fri Jun 30 12:52:42 EDT 2017
+\n mri_binarize --i wm.mgz --min 255 --max 255 --o wm255.mgz --count wm255.txt \n
+\n mri_binarize --i wm.mgz --min 1 --max 1 --o wm1.mgz --count wm1.txt \n
+\n rm wm1.mgz wm255.mgz \n
+\n cp wm.mgz wm.seg.mgz \n
+\n mri_segment -keep -mprage brain.mgz wm.seg.mgz \n
+\n mri_edit_wm_with_aseg -keep-in wm.seg.mgz brain.mgz aseg.presurf.mgz wm.asegedit.mgz \n
+\n mri_pretess -keep wm.asegedit.mgz wm norm.mgz wm.mgz \n
+#--------------------------------------------
+#@# Fill Fri Jun 30 12:54:36 EDT 2017
+\n mri_fill -a ../scripts/ponscc.cut.log -xform transforms/talairach.lta -segmentation aseg.auto_noCCseg.mgz wm.mgz filled.mgz \n
+#--------------------------------------------
+#@# Tessellate lh Fri Jun 30 12:55:13 EDT 2017
+\n mri_pretess ../mri/filled.mgz 255 ../mri/norm.mgz ../mri/filled-pretess255.mgz \n
+\n mri_tessellate ../mri/filled-pretess255.mgz 255 ../surf/lh.orig.nofix \n
+\n rm -f ../mri/filled-pretess255.mgz \n
+\n mris_extract_main_component ../surf/lh.orig.nofix ../surf/lh.orig.nofix \n
+#--------------------------------------------
+#@# Tessellate rh Fri Jun 30 12:55:18 EDT 2017
+\n mri_pretess ../mri/filled.mgz 127 ../mri/norm.mgz ../mri/filled-pretess127.mgz \n
+\n mri_tessellate ../mri/filled-pretess127.mgz 127 ../surf/rh.orig.nofix \n
+\n rm -f ../mri/filled-pretess127.mgz \n
+\n mris_extract_main_component ../surf/rh.orig.nofix ../surf/rh.orig.nofix \n
+#--------------------------------------------
+#@# Smooth1 lh Fri Jun 30 12:55:23 EDT 2017
+\n mris_smooth -nw -seed 1234 ../surf/lh.orig.nofix ../surf/lh.smoothwm.nofix \n
+#--------------------------------------------
+#@# Smooth1 rh Fri Jun 30 12:55:29 EDT 2017
+\n mris_smooth -nw -seed 1234 ../surf/rh.orig.nofix ../surf/rh.smoothwm.nofix \n
+#--------------------------------------------
+#@# Inflation1 lh Fri Jun 30 12:55:35 EDT 2017
+\n mris_inflate -no-save-sulc ../surf/lh.smoothwm.nofix ../surf/lh.inflated.nofix \n
+#--------------------------------------------
+#@# Inflation1 rh Fri Jun 30 12:55:58 EDT 2017
+\n mris_inflate -no-save-sulc ../surf/rh.smoothwm.nofix ../surf/rh.inflated.nofix \n
+#--------------------------------------------
+#@# QSphere lh Fri Jun 30 12:56:20 EDT 2017
+\n mris_sphere -q -seed 1234 ../surf/lh.inflated.nofix ../surf/lh.qsphere.nofix \n
+#--------------------------------------------
+#@# QSphere rh Fri Jun 30 12:58:46 EDT 2017
+\n mris_sphere -q -seed 1234 ../surf/rh.inflated.nofix ../surf/rh.qsphere.nofix \n
+#--------------------------------------------
+#@# Fix Topology Copy lh Fri Jun 30 13:01:08 EDT 2017
+\n cp ../surf/lh.orig.nofix ../surf/lh.orig \n
+\n cp ../surf/lh.inflated.nofix ../surf/lh.inflated \n
+#--------------------------------------------
+#@# Fix Topology Copy rh Fri Jun 30 13:01:08 EDT 2017
+\n cp ../surf/rh.orig.nofix ../surf/rh.orig \n
+\n cp ../surf/rh.inflated.nofix ../surf/rh.inflated \n
+#@# Fix Topology lh Fri Jun 30 13:01:08 EDT 2017
+\n mris_fix_topology -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_fix_topology.lh.dat -mgz -sphere qsphere.nofix -ga -seed 1234 sub.01.bl.01 lh \n
+#@# Fix Topology rh Fri Jun 30 14:14:33 EDT 2017
+\n mris_fix_topology -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_fix_topology.rh.dat -mgz -sphere qsphere.nofix -ga -seed 1234 sub.01.bl.01 rh \n
+\n mris_euler_number ../surf/lh.orig \n
+\n mris_euler_number ../surf/rh.orig \n
+\n mris_remove_intersection ../surf/lh.orig ../surf/lh.orig \n
+\n rm ../surf/lh.inflated \n
+\n mris_remove_intersection ../surf/rh.orig ../surf/rh.orig \n
+\n rm ../surf/rh.inflated \n
+#--------------------------------------------
+#@# Make White Surf lh Fri Jun 30 14:22:39 EDT 2017
+\n mris_make_surfaces -aseg ../mri/aseg.presurf -white white.preaparc -noaparc -whiteonly -mgz -T1 brain.finalsurfs sub.01.bl.01 lh \n
+#--------------------------------------------
+#@# Make White Surf rh Fri Jun 30 14:26:37 EDT 2017
+\n mris_make_surfaces -aseg ../mri/aseg.presurf -white white.preaparc -noaparc -whiteonly -mgz -T1 brain.finalsurfs sub.01.bl.01 rh \n
+#--------------------------------------------
+#@# Smooth2 lh Fri Jun 30 14:30:24 EDT 2017
+\n mris_smooth -n 3 -nw -seed 1234 ../surf/lh.white.preaparc ../surf/lh.smoothwm \n
+#--------------------------------------------
+#@# Smooth2 rh Fri Jun 30 14:30:30 EDT 2017
+\n mris_smooth -n 3 -nw -seed 1234 ../surf/rh.white.preaparc ../surf/rh.smoothwm \n
+#--------------------------------------------
+#@# Inflation2 lh Fri Jun 30 14:30:36 EDT 2017
+\n mris_inflate -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_inflate.lh.dat ../surf/lh.smoothwm ../surf/lh.inflated \n
+#--------------------------------------------
+#@# Inflation2 rh Fri Jun 30 14:30:59 EDT 2017
+\n mris_inflate -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_inflate.rh.dat ../surf/rh.smoothwm ../surf/rh.inflated \n
+#--------------------------------------------
+#@# Curv .H and .K lh Fri Jun 30 14:31:22 EDT 2017
+\n mris_curvature -w lh.white.preaparc \n
+\n mris_curvature -thresh .999 -n -a 5 -w -distances 10 10 lh.inflated \n
+#--------------------------------------------
+#@# Curv .H and .K rh Fri Jun 30 14:32:15 EDT 2017
+\n mris_curvature -w rh.white.preaparc \n
+\n mris_curvature -thresh .999 -n -a 5 -w -distances 10 10 rh.inflated \n
+\n#-----------------------------------------
+#@# Curvature Stats lh Fri Jun 30 14:33:11 EDT 2017
+\n mris_curvature_stats -m --writeCurvatureFiles -G -o ../stats/lh.curv.stats -F smoothwm sub.01.bl.01 lh curv sulc \n
+\n#-----------------------------------------
+#@# Curvature Stats rh Fri Jun 30 14:33:16 EDT 2017
+\n mris_curvature_stats -m --writeCurvatureFiles -G -o ../stats/rh.curv.stats -F smoothwm sub.01.bl.01 rh curv sulc \n
+#--------------------------------------------
+#@# Sphere lh Fri Jun 30 14:33:21 EDT 2017
+\n mris_sphere -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_sphere.lh.dat -seed 1234 ../surf/lh.inflated ../surf/lh.sphere \n
+#--------------------------------------------
+#@# Sphere rh Fri Jun 30 15:00:04 EDT 2017
+\n mris_sphere -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_sphere.rh.dat -seed 1234 ../surf/rh.inflated ../surf/rh.sphere \n
+#--------------------------------------------
+#@# Surf Reg lh Fri Jun 30 15:29:04 EDT 2017
+\n mris_register -curv -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_register.lh.dat ../surf/lh.sphere /Applications/freesurfer/average/lh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif ../surf/lh.sphere.reg \n
+#--------------------------------------------
+#@# Surf Reg rh Fri Jun 30 16:05:45 EDT 2017
+\n mris_register -curv -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_register.rh.dat ../surf/rh.sphere /Applications/freesurfer/average/rh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif ../surf/rh.sphere.reg \n
