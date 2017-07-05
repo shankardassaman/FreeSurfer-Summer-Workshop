@@ -434,3 +434,38 @@ Fri Jun 30 12:49:30 EDT 2017
 #@# Sphere rh Fri Jun 30 15:00:04 EDT 2017
 #@# Surf Reg lh Fri Jun 30 15:29:04 EDT 2017
 #@# Surf Reg rh Fri Jun 30 16:05:45 EDT 2017
+#@# Jacobian white lh Fri Jun 30 19:33:05 EDT 2017
+#@# Jacobian white rh Fri Jun 30 19:33:07 EDT 2017
+#@# AvgCurv lh Fri Jun 30 19:33:08 EDT 2017
+#@# AvgCurv rh Fri Jun 30 19:33:10 EDT 2017
+#@# Cortical Parc lh Fri Jun 30 19:33:11 EDT 2017
+#@# Cortical Parc rh Fri Jun 30 19:33:25 EDT 2017
+#@# Make Pial Surf lh Fri Jun 30 19:33:38 EDT 2017
+#@# Make Pial Surf rh Sat Jul  1 07:44:17 EDT 2017
+#@# Surf Volume lh Sat Jul  1 20:55:05 EDT 2017
+#@# Surf Volume rh Sat Jul  1 20:55:09 EDT 2017
+#@# Cortical ribbon mask Sat Jul  1 20:55:12 EDT 2017
+#@# Parcellation Stats lh Sun Jul  2 08:04:54 EDT 2017
+#@# Parcellation Stats rh Sun Jul  2 09:05:49 EDT 2017
+#@# Cortical Parc 2 lh Sun Jul  2 10:06:46 EDT 2017
+#@# Cortical Parc 2 rh Sun Jul  2 10:07:04 EDT 2017
+#@# Parcellation Stats 2 lh Sun Jul  2 11:07:18 EDT 2017
+#@# Parcellation Stats 2 rh Sun Jul  2 11:07:48 EDT 2017
+#@# Cortical Parc 3 lh Sun Jul  2 12:08:15 EDT 2017
+#@# Cortical Parc 3 rh Sun Jul  2 12:08:29 EDT 2017
+#@# Parcellation Stats 3 lh Sun Jul  2 12:08:43 EDT 2017
+#@# Parcellation Stats 3 rh Sun Jul  2 13:09:07 EDT 2017
+#@# WM/GM Contrast lh Sun Jul  2 13:09:37 EDT 2017
+#@# WM/GM Contrast rh Sun Jul  2 13:09:43 EDT 2017
+#@# Relabel Hypointensities Sun Jul  2 13:09:48 EDT 2017
+#@# AParc-to-ASeg aparc Sun Jul  2 14:10:01 EDT 2017
+#@# AParc-to-ASeg a2009s Sun Jul  2 18:13:34 EDT 2017
+#@# AParc-to-ASeg DKTatlas Sun Jul  2 22:17:04 EDT 2017
+#@# APas-to-ASeg Mon Jul  3 02:20:47 EDT 2017
+#@# ASeg Stats Mon Jul  3 02:20:53 EDT 2017
+#@# WMParc Mon Jul  3 05:23:31 EDT 2017
+#@# BA_exvivo Labels lh Mon Jul  3 13:05:56 EDT 2017
+Darwin CFMI-iMac-10.local 16.6.0 Darwin Kernel Version 16.6.0: Fri Apr 14 16:21:16 PDT 2017; root:xnu-3789.60.24~6/RELEASE_X86_64 x86_64
+
+recon-all -s sub.01.bl.01 exited with ERRORS at Mon Jul  3 13:05:56 EDT 2017
+

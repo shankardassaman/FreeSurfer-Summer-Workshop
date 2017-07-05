@@ -541,3 +541,100 @@ INFO: Creating symlink to fsaverage subject...
 #--------------------------------------------
 #@# Surf Reg rh Fri Jun 30 16:05:45 EDT 2017
 \n mris_register -curv -rusage /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/sub.01.bl.01/touch/rusage.mris_register.rh.dat ../surf/rh.sphere /Applications/freesurfer/average/rh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif ../surf/rh.sphere.reg \n
+#--------------------------------------------
+#@# Jacobian white lh Fri Jun 30 19:33:05 EDT 2017
+\n mris_jacobian ../surf/lh.white.preaparc ../surf/lh.sphere.reg ../surf/lh.jacobian_white \n
+#--------------------------------------------
+#@# Jacobian white rh Fri Jun 30 19:33:07 EDT 2017
+\n mris_jacobian ../surf/rh.white.preaparc ../surf/rh.sphere.reg ../surf/rh.jacobian_white \n
+#--------------------------------------------
+#@# AvgCurv lh Fri Jun 30 19:33:08 EDT 2017
+\n mrisp_paint -a 5 /Applications/freesurfer/average/lh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif#6 ../surf/lh.sphere.reg ../surf/lh.avg_curv \n
+#--------------------------------------------
+#@# AvgCurv rh Fri Jun 30 19:33:10 EDT 2017
+\n mrisp_paint -a 5 /Applications/freesurfer/average/rh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif#6 ../surf/rh.sphere.reg ../surf/rh.avg_curv \n
+#-----------------------------------------
+#@# Cortical Parc lh Fri Jun 30 19:33:11 EDT 2017
+\n mris_ca_label -l ../label/lh.cortex.label -aseg ../mri/aseg.presurf.mgz -seed 1234 sub.01.bl.01 lh ../surf/lh.sphere.reg /Applications/freesurfer/average/lh.DKaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs ../label/lh.aparc.annot \n
+#-----------------------------------------
+#@# Cortical Parc rh Fri Jun 30 19:33:25 EDT 2017
+\n mris_ca_label -l ../label/rh.cortex.label -aseg ../mri/aseg.presurf.mgz -seed 1234 sub.01.bl.01 rh ../surf/rh.sphere.reg /Applications/freesurfer/average/rh.DKaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs ../label/rh.aparc.annot \n
+#--------------------------------------------
+#@# Make Pial Surf lh Fri Jun 30 19:33:38 EDT 2017
+\n mris_make_surfaces -orig_white white.preaparc -orig_pial white.preaparc -aseg ../mri/aseg.presurf -mgz -T1 brain.finalsurfs sub.01.bl.01 lh \n
+#--------------------------------------------
+#@# Make Pial Surf rh Sat Jul  1 07:44:17 EDT 2017
+\n mris_make_surfaces -orig_white white.preaparc -orig_pial white.preaparc -aseg ../mri/aseg.presurf -mgz -T1 brain.finalsurfs sub.01.bl.01 rh \n
+#--------------------------------------------
+#@# Surf Volume lh Sat Jul  1 20:55:05 EDT 2017
+#--------------------------------------------
+#@# Surf Volume rh Sat Jul  1 20:55:09 EDT 2017
+#--------------------------------------------
+#@# Cortical ribbon mask Sat Jul  1 20:55:12 EDT 2017
+\n mris_volmask --aseg_name aseg.presurf --label_left_white 2 --label_left_ribbon 3 --label_right_white 41 --label_right_ribbon 42 --save_ribbon sub.01.bl.01 \n
+#-----------------------------------------
+#@# Parcellation Stats lh Sun Jul  2 08:04:54 EDT 2017
+\n mris_anatomical_stats -th3 -mgz -cortex ../label/lh.cortex.label -f ../stats/lh.aparc.stats -b -a ../label/lh.aparc.annot -c ../label/aparc.annot.ctab sub.01.bl.01 lh white \n
+\n mris_anatomical_stats -th3 -mgz -cortex ../label/lh.cortex.label -f ../stats/lh.aparc.pial.stats -b -a ../label/lh.aparc.annot -c ../label/aparc.annot.ctab sub.01.bl.01 lh pial \n
+#-----------------------------------------
+#@# Parcellation Stats rh Sun Jul  2 09:05:49 EDT 2017
+\n mris_anatomical_stats -th3 -mgz -cortex ../label/rh.cortex.label -f ../stats/rh.aparc.stats -b -a ../label/rh.aparc.annot -c ../label/aparc.annot.ctab sub.01.bl.01 rh white \n
+\n mris_anatomical_stats -th3 -mgz -cortex ../label/rh.cortex.label -f ../stats/rh.aparc.pial.stats -b -a ../label/rh.aparc.annot -c ../label/aparc.annot.ctab sub.01.bl.01 rh pial \n
+#-----------------------------------------
+#@# Cortical Parc 2 lh Sun Jul  2 10:06:46 EDT 2017
+\n mris_ca_label -l ../label/lh.cortex.label -aseg ../mri/aseg.presurf.mgz -seed 1234 sub.01.bl.01 lh ../surf/lh.sphere.reg /Applications/freesurfer/average/lh.CDaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs ../label/lh.aparc.a2009s.annot \n
+#-----------------------------------------
+#@# Cortical Parc 2 rh Sun Jul  2 10:07:04 EDT 2017
+\n mris_ca_label -l ../label/rh.cortex.label -aseg ../mri/aseg.presurf.mgz -seed 1234 sub.01.bl.01 rh ../surf/rh.sphere.reg /Applications/freesurfer/average/rh.CDaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs ../label/rh.aparc.a2009s.annot \n
+#-----------------------------------------
+#@# Parcellation Stats 2 lh Sun Jul  2 11:07:18 EDT 2017
+\n mris_anatomical_stats -th3 -mgz -cortex ../label/lh.cortex.label -f ../stats/lh.aparc.a2009s.stats -b -a ../label/lh.aparc.a2009s.annot -c ../label/aparc.annot.a2009s.ctab sub.01.bl.01 lh white \n
+#-----------------------------------------
+#@# Parcellation Stats 2 rh Sun Jul  2 11:07:48 EDT 2017
+\n mris_anatomical_stats -th3 -mgz -cortex ../label/rh.cortex.label -f ../stats/rh.aparc.a2009s.stats -b -a ../label/rh.aparc.a2009s.annot -c ../label/aparc.annot.a2009s.ctab sub.01.bl.01 rh white \n
+#-----------------------------------------
+#@# Cortical Parc 3 lh Sun Jul  2 12:08:15 EDT 2017
+\n mris_ca_label -l ../label/lh.cortex.label -aseg ../mri/aseg.presurf.mgz -seed 1234 sub.01.bl.01 lh ../surf/lh.sphere.reg /Applications/freesurfer/average/lh.DKTaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs ../label/lh.aparc.DKTatlas.annot \n
+#-----------------------------------------
+#@# Cortical Parc 3 rh Sun Jul  2 12:08:29 EDT 2017
+\n mris_ca_label -l ../label/rh.cortex.label -aseg ../mri/aseg.presurf.mgz -seed 1234 sub.01.bl.01 rh ../surf/rh.sphere.reg /Applications/freesurfer/average/rh.DKTaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs ../label/rh.aparc.DKTatlas.annot \n
+#-----------------------------------------
+#@# Parcellation Stats 3 lh Sun Jul  2 12:08:43 EDT 2017
+\n mris_anatomical_stats -th3 -mgz -cortex ../label/lh.cortex.label -f ../stats/lh.aparc.DKTatlas.stats -b -a ../label/lh.aparc.DKTatlas.annot -c ../label/aparc.annot.DKTatlas.ctab sub.01.bl.01 lh white \n
+#-----------------------------------------
+#@# Parcellation Stats 3 rh Sun Jul  2 13:09:07 EDT 2017
+\n mris_anatomical_stats -th3 -mgz -cortex ../label/rh.cortex.label -f ../stats/rh.aparc.DKTatlas.stats -b -a ../label/rh.aparc.DKTatlas.annot -c ../label/aparc.annot.DKTatlas.ctab sub.01.bl.01 rh white \n
+#-----------------------------------------
+#@# WM/GM Contrast lh Sun Jul  2 13:09:37 EDT 2017
+\n pctsurfcon --s sub.01.bl.01 --lh-only \n
+#-----------------------------------------
+#@# WM/GM Contrast rh Sun Jul  2 13:09:43 EDT 2017
+\n pctsurfcon --s sub.01.bl.01 --rh-only \n
+#-----------------------------------------
+#@# Relabel Hypointensities Sun Jul  2 13:09:48 EDT 2017
+\n mri_relabel_hypointensities aseg.presurf.mgz ../surf aseg.presurf.hypos.mgz \n
+#-----------------------------------------
+#@# AParc-to-ASeg aparc Sun Jul  2 14:10:01 EDT 2017
+\n mri_aparc2aseg --s sub.01.bl.01 --volmask --aseg aseg.presurf.hypos --relabel mri/norm.mgz mri/transforms/talairach.m3z /Applications/freesurfer/average/RB_all_2016-05-10.vc700.gca mri/aseg.auto_noCCseg.label_intensities.txt \n
+#-----------------------------------------
+#@# AParc-to-ASeg a2009s Sun Jul  2 18:13:34 EDT 2017
+\n mri_aparc2aseg --s sub.01.bl.01 --volmask --aseg aseg.presurf.hypos --relabel mri/norm.mgz mri/transforms/talairach.m3z /Applications/freesurfer/average/RB_all_2016-05-10.vc700.gca mri/aseg.auto_noCCseg.label_intensities.txt --a2009s \n
+#-----------------------------------------
+#@# AParc-to-ASeg DKTatlas Sun Jul  2 22:17:04 EDT 2017
+\n mri_aparc2aseg --s sub.01.bl.01 --volmask --aseg aseg.presurf.hypos --relabel mri/norm.mgz mri/transforms/talairach.m3z /Applications/freesurfer/average/RB_all_2016-05-10.vc700.gca mri/aseg.auto_noCCseg.label_intensities.txt --annot aparc.DKTatlas --o mri/aparc.DKTatlas+aseg.mgz \n
+#-----------------------------------------
+#@# APas-to-ASeg Mon Jul  3 02:20:47 EDT 2017
+\n apas2aseg --i aparc+aseg.mgz --o aseg.mgz \n
+#--------------------------------------------
+#@# ASeg Stats Mon Jul  3 02:20:53 EDT 2017
+\n mri_segstats --seg mri/aseg.mgz --sum stats/aseg.stats --pv mri/norm.mgz --empty --brainmask mri/brainmask.mgz --brain-vol-from-seg --excludeid 0 --excl-ctxgmwm --supratent --subcortgray --in mri/norm.mgz --in-intensity-name norm --in-intensity-units MR --etiv --surf-wm-vol --surf-ctx-vol --totalgray --euler --ctab /Applications/freesurfer/ASegStatsLUT.txt --subject sub.01.bl.01 \n
+#-----------------------------------------
+#@# WMParc Mon Jul  3 05:23:31 EDT 2017
+\n mri_aparc2aseg --s sub.01.bl.01 --labelwm --hypo-as-wm --rip-unknown --volmask --o mri/wmparc.mgz --ctxseg aparc+aseg.mgz \n
+\n mri_segstats --seg mri/wmparc.mgz --sum stats/wmparc.stats --pv mri/norm.mgz --excludeid 0 --brainmask mri/brainmask.mgz --in mri/norm.mgz --in-intensity-name norm --in-intensity-units MR --subject sub.01.bl.01 --surf-wm-vol --ctab /Applications/freesurfer/WMParcStatsLUT.txt --etiv \n
+INFO: fsaverage subject does not exist in SUBJECTS_DIR
+INFO: Creating symlink to fsaverage subject...
+\n cd /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs; ln -s /Applications/freesurfer/subjects/fsaverage; cd - \n
+#--------------------------------------------
+#@# BA_exvivo Labels lh Mon Jul  3 13:05:56 EDT 2017
+\n mri_label2label --srcsubject fsaverage --srclabel /Users/freesurfer_user/Documents/GitHub/FreeSurfer-Summer-Workshop/fs/fsaverage/label/lh.BA1_exvivo.label --trgsubject sub.01.bl.01 --trglabel ./lh.BA1_exvivo.label --hemi lh --regmethod surface \n

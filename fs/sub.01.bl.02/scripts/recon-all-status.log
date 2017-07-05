@@ -399,3 +399,71 @@ status file for recon-all
 Wed Jun 28 16:34:25 EDT 2017
 #@# BA_exvivo Labels rh Wed Jun 28 16:34:25 EDT 2017
 recon-all -s sub.01.bl.02 finished without error at Wed Jun 28 16:39:00 EDT 2017
+\n\n
+New invocation of recon-all 
+\n\n
+status file for recon-all
+Fri Jun 30 16:24:19 EDT 2017
+#@# Intensity Normalization2 Fri Jun 30 16:24:19 EDT 2017
+#@# Mask BFS Fri Jun 30 16:28:05 EDT 2017
+#@# WM Segmentation Fri Jun 30 16:28:07 EDT 2017
+#@# Fill Fri Jun 30 16:30:19 EDT 2017
+#@# Tessellate lh Fri Jun 30 16:30:59 EDT 2017
+#@# Tessellate rh Fri Jun 30 16:31:05 EDT 2017
+#@# Smooth1 lh Fri Jun 30 16:31:11 EDT 2017
+#@# Smooth1 rh Fri Jun 30 16:31:19 EDT 2017
+#@# Inflation1 lh Fri Jun 30 16:31:26 EDT 2017
+#@# Inflation1 rh Fri Jun 30 16:31:56 EDT 2017
+#@# QSphere lh Fri Jun 30 16:32:25 EDT 2017
+#@# QSphere rh Fri Jun 30 16:35:17 EDT 2017
+#@# Fix Topology Copy lh Fri Jun 30 16:38:01 EDT 2017
+#@# Fix Topology Copy rh Fri Jun 30 16:38:01 EDT 2017
+#@# Fix Topology lh Fri Jun 30 16:38:01 EDT 2017
+#@# Fix Topology rh Sun Jul  2 14:10:16 EDT 2017
+#@# Make White Surf lh Mon Jul  3 22:36:57 EDT 2017
+#@# Make White Surf rh Tue Jul  4 02:40:34 EDT 2017
+#@# Smooth2 lh Tue Jul  4 06:44:00 EDT 2017
+#@# Smooth2 rh Tue Jul  4 06:44:07 EDT 2017
+#@# Inflation2 lh Tue Jul  4 06:44:13 EDT 2017
+#@# Inflation2 rh Tue Jul  4 06:44:37 EDT 2017
+#@# Curv .H and .K lh Tue Jul  4 07:44:54 EDT 2017
+#@# Curv .H and .K rh Tue Jul  4 08:45:44 EDT 2017
+#@# Curvature Stats lh Tue Jul  4 09:46:38 EDT 2017
+#@# Curvature Stats rh Tue Jul  4 09:46:44 EDT 2017
+#@# Sphere lh Tue Jul  4 09:46:48 EDT 2017
+#@# Sphere rh Wed Jul  5 08:51:12 EDT 2017
+#@# Surf Reg lh Wed Jul  5 09:17:16 EDT 2017
+#@# Surf Reg rh Wed Jul  5 10:06:49 EDT 2017
+#@# Jacobian white lh Wed Jul  5 11:23:42 EDT 2017
+#@# Jacobian white rh Wed Jul  5 11:23:44 EDT 2017
+#@# AvgCurv lh Wed Jul  5 11:23:45 EDT 2017
+#@# AvgCurv rh Wed Jul  5 11:23:47 EDT 2017
+#@# Cortical Parc lh Wed Jul  5 11:23:48 EDT 2017
+#@# Cortical Parc rh Wed Jul  5 11:24:03 EDT 2017
+#@# Make Pial Surf lh Wed Jul  5 11:24:15 EDT 2017
+#@# Make Pial Surf rh Wed Jul  5 12:17:20 EDT 2017
+#@# Surf Volume lh Wed Jul  5 14:10:06 EDT 2017
+#@# Surf Volume rh Wed Jul  5 14:10:10 EDT 2017
+#@# Cortical ribbon mask Wed Jul  5 14:10:13 EDT 2017
+#@# Parcellation Stats lh Wed Jul  5 14:21:08 EDT 2017
+#@# Parcellation Stats rh Wed Jul  5 14:22:14 EDT 2017
+#@# Cortical Parc 2 lh Wed Jul  5 14:23:17 EDT 2017
+#@# Cortical Parc 2 rh Wed Jul  5 14:23:35 EDT 2017
+#@# Parcellation Stats 2 lh Wed Jul  5 14:23:53 EDT 2017
+#@# Parcellation Stats 2 rh Wed Jul  5 14:24:26 EDT 2017
+#@# Cortical Parc 3 lh Wed Jul  5 14:24:57 EDT 2017
+#@# Cortical Parc 3 rh Wed Jul  5 14:25:11 EDT 2017
+#@# Parcellation Stats 3 lh Wed Jul  5 14:25:24 EDT 2017
+#@# Parcellation Stats 3 rh Wed Jul  5 14:25:53 EDT 2017
+#@# WM/GM Contrast lh Wed Jul  5 14:26:21 EDT 2017
+#@# WM/GM Contrast rh Wed Jul  5 14:26:27 EDT 2017
+#@# Relabel Hypointensities Wed Jul  5 14:26:31 EDT 2017
+#@# AParc-to-ASeg aparc Wed Jul  5 14:26:50 EDT 2017
+#@# AParc-to-ASeg a2009s Wed Jul  5 14:31:09 EDT 2017
+#@# AParc-to-ASeg DKTatlas Wed Jul  5 14:35:27 EDT 2017
+#@# APas-to-ASeg Wed Jul  5 14:39:49 EDT 2017
+#@# ASeg Stats Wed Jul  5 14:39:55 EDT 2017
+#@# WMParc Wed Jul  5 14:42:42 EDT 2017
+#@# BA_exvivo Labels lh Wed Jul  5 14:50:07 EDT 2017
+#@# BA_exvivo Labels rh Wed Jul  5 14:54:14 EDT 2017
+recon-all -s sub.01.bl.02 finished without error at Wed Jul  5 14:58:20 EDT 2017
